@@ -16,25 +16,21 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity<String> signup(UserForm userForm) {
         try {
-            User user = userService.userSignup(userForm);
+            userService.userSignup(userForm);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("회원가입 실패");
         }
         return ResponseEntity.ok("회원가입 성공");
     }
 
-    @PostMapping("/master/login")
+    @PostMapping("/user/login")
     public ResponseEntity<?> masterLogin(UserForm userForm) {
-        return ResponseEntity.ok("로그인 성공");
+        try {
+            User user = userService.userLogin(userForm);
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("로그인 실패");
+        }
     }
 
-    @PostMapping("/chef/login")
-    public ResponseEntity<?> chefLogin(UserForm userForm) {
-        return ResponseEntity.ok("로그인 성공");
-    }
-
-    @PostMapping("/guest/login")
-    public ResponseEntity<?> guestLogin(UserForm userForm) {
-        return ResponseEntity.ok("로그인 성공");
-    }
 }
