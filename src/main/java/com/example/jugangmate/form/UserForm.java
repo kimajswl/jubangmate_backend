@@ -1,5 +1,6 @@
 package com.example.jugangmate.form;
 
+import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 @Data

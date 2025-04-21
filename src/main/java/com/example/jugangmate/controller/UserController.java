@@ -3,8 +3,6 @@ package com.example.jugangmate.controller;
 import com.example.jugangmate.entity.User;
 import com.example.jugangmate.form.UserForm;
 import com.example.jugangmate.service.UserService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +14,7 @@ public class UserController {
     private final UserService userService;;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(UserForm userForm) {
+    public ResponseEntity<String> signup(UserForm userForm) {
         try {
             User user = userService.userSignup(userForm);
         } catch (Exception e) {
