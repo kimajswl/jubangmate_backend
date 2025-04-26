@@ -39,6 +39,7 @@ dependencies {
     implementation'org.springframework.boot:spring-boot-starter-validation:3.4.3'
     implementation 'com.auth0:java-jwt:4.4.0'
     implementation 'com.nimbusds:nimbus-jose-jwt:9.37.3'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
 }
 
