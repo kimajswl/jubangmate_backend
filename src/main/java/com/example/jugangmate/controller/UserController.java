@@ -5,8 +5,11 @@ import com.example.jugangmate.form.UserForm;
 import com.example.jugangmate.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,6 +34,15 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("로그인 실패");
         }
+    }
+
+    @GetMapping("/jwks")
+    public ResponseEntity<Map<String, Object>> jwks() {
+
+        Map<String, Object> jwkSet = userService.getJwks();
+
+        return ResponseEntity.ok()
+                .body(jwkSet);
     }
 
 }

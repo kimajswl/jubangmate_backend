@@ -1,9 +1,6 @@
 package com.example.jugangmate.service;
 
-import com.example.jugangmate.CustomException;
-import com.example.jugangmate.CustomResponseException;
-import com.example.jugangmate.JsonUtil;
-import com.example.jugangmate.RoleEnum;
+import com.example.jugangmate.*;
 import com.example.jugangmate.entity.User;
 import com.example.jugangmate.form.UserForm;
 import com.example.jugangmate.repository.UserRepository;
@@ -13,13 +10,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final JsonUtil jsonUtil;
-    private final HttpServletRequest httpServletRequest;
+
+    private final JwtUtil jwtUtil;
 
     public User userSignup(UserForm userForm) {
         RoleEnum userRole = jsonUtil.RoleEnumConvert(userForm.getUserRole());
@@ -54,5 +54,9 @@ public class UserService {
 
 
         return user;
+    }
+
+    public Map<String, Object> getJwks() {
+        return jwtUtil.getJwks();
     }
 }
